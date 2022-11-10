@@ -31,11 +31,11 @@ class Language(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=200)
-    author = models.ForeignKey(Autor,on_delete=models.SET_NULL,null=True)
+    author = models.ForeignKey(Author,on_delete=models.SET_NULL,null=True)
     description = models.TextField(max_length=1000)
     isbn = models.CharField('ISBN',max_length=13,help_text='help_text=13 Caracteres <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
     genre = models.ManyToManyField(Genre)
-    lenguage = models.ForeignKey(Language)
+    lenguage = models.ForeignKey(Language,on_delete=models.SET_NULL,null=True)
 
     def get_absolute_url(self):
         return reverse('BookInfo',args=[str(self.id)])
