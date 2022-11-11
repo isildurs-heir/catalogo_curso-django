@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block page_content %}
+{% block content %}
+<h1>Curso Django: Catalogo de mi biblioteca</h1>
+<p>Bienvenidos a <em>Catalogo</em>, una aplicación web desarrollada en Django.</p>
+<h2>Contenido dinámico</h2>
+<p>Nuestro catálogo se forma de :</p>
+<ul>
+    <li><strong>Autores:</strong> {{ nAuthors }}</li>
+    <li><strong>Libros:</strong> {{ nBooks }}</li>
+    <li><strong>Ejemplares:</strong> {{ nCopys }}</li>
+    <li><strong>Disponibles:</strong> {{ nAvaibles }}</li>
+    <li><strong>Idiomas:</strong> {{ nLeng }}</li>
+    <li><strong>Generos:</strong> {{ nGen }}</li>
+</ul>
+{% endblock %}
+{% endblock %}
