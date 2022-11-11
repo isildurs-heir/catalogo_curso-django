@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>{{author.name}}, {{author.surname}}</h1>
+    <div class="container-fluid">
+        {% if author.deathDate %}
+        <p class="card-text">{{author.birthDate}} - {{author.deathDate}}</p>
+        {% else %}
+        <p class="card-text">{{author.birthDate}} - ACTIVO</p>
+        {% endif %}
+        <div class="container">
+            {% if books %}
+            <h5>Libros en catalogo:</h5>
+            <ul>
+                {% for book in books %}
+                <li>{{book.title}}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p> No se encuentran libros de este autor en el catalogo </p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

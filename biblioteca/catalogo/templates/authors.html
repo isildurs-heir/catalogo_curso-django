@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Listado</h1>
+    {% if authors %}
+        <ul>
+            {% for author in authors %}
+            <li>
+                <a href="{% url 'author' author.id %}">{{ author.name }}, {{ author.surname }}</a>
+                <p>{{author.id}}</p>
+            </li>
+            {% endfor %}
+        </ul>
+
+        {% else %}
+
+            <p>Oops! No tenemos autores (? xd</p>
+
+    {% endif %}
+
+{% endblock %}

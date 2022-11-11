@@ -21,8 +21,8 @@
                 {% block sidebar %}
                 <ul class="sidebar-nav">
                     <li><a href="{% url 'index' %}">Home</a></li>
-                    <li><a href="">Todos los Libros</a></li>
-                    <li><a href="">Todos los Autores</a></li>
+                    <li><a href="{% url 'books' %}">Todos los Libros</a></li>
+                    <li><a href="{% url 'authors' %}">Todos los Autores</a></li>
                 </ul>
                 {% endblock %}
             </div>

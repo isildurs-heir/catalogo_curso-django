@@ -23,6 +23,9 @@ class Author(models.Model):
     def __str__(self):
         return '%s, %s' %(self.name,self.surname)
 
+    class Meta:
+        ordering = ['id']
+
 class Language(models.Model):
     name = models.TextField(max_length=50)
 
@@ -47,6 +50,9 @@ class Book(models.Model):
         return ', '.join([genre.name for genre in self.genre.all() [:2]])
 
     show_genre.short_description = 'Genre/s'
+
+    class Meta:
+        ordering = ['id']
 
 class Copy(models.Model):
     id = models.UUIDField(primary_key=True,default=uuid.uuid4)
