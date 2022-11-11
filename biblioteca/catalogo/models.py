@@ -8,7 +8,7 @@ class Genre(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.nombre
+        return self.name
 
 class Author(models.Model):
     name = models.CharField(max_length=50)
@@ -41,7 +41,7 @@ class Book(models.Model):
         return reverse('BookInfo',args=[str(self.id)])
     
     def __str__(self):
-        return self.titulo
+        return self.title
 
     def show_genre(self):
         return ', '.join([genre.name for genre in self.genre.all() [:2]])
