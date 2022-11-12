@@ -1,9 +1,19 @@
 from django.shortcuts import render
 from django.views import generic
 from catalogo.models import Genre, Book, Copy, Author, Language
-
-
+from django.http import JsonResponse
 # Create your views here.
+
+#testeando ajax
+def test_ajax(request):
+    return render(request,'test-ajax.html')
+
+def getData(request):
+    xd = Book.objects.all()
+    libros = list(xd.values('title'))
+    data = {'message':'damn','libros':libros}
+    return JsonResponse(data)
+#testeando ajax
 
 def index(request):
     nGen = Genre.objects.all().count()
