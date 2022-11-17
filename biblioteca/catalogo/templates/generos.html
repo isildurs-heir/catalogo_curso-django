@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Géneros</h1>
+<p><a href="{% url 'genero_new' %}">Nuevo</a></p>
+{% if generos %}
+<ul>
+    {% for genero in generos %}
+    <li>
+        <a href="{% url 'genero_update' genero.id %}">{{ genero.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Oops! No tenemos Géneros de Libros en catálogo.</p>
+{% endif %}
+{% endblock %}

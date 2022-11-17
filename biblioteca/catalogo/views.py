@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from catalogo.models import Genre, Book, Copy, Author, Language
+from catalogo.forms import GenreForm, AuthorForm
 from django.http import JsonResponse
 # Create your views here.
 
@@ -70,3 +71,37 @@ def BookDetail(request,pk):
         'author':author,
     }
     return render(request,'book.html',context)
+
+
+def genre_new(request):
+    if request.method == "POST":
+        formulario = GenreForm(request.POST)
+        if formulario.is_valid():
+            genero = formulario.save(commit=False)
+            genero.name = formulario.cleaned_data['name']
+            genero.save()
+            return redirect('generos')
+    else:
+        formulario = GenreForm()
+
+        return render(request, 'genero_new.html', {'formulario':formulario})
+
+def genre_update(request,pk):
+    genero = get_object_or_404(Genre, pk = pk)
+    if request.method == "POST":
+        formulario = GenreForm(request.POST, instance=genero)
+        if formulario.is_valid():
+            genero = formulario.save(commit=False)
+            genero.nombre = formulario.cleaned_data['name']
+            genero.save()
+            return redirect('generos')
+    else:
+        formulario = GenreForm(instance=genero)
+    return render(request,'genero_new.html', {'formulario':formulario})
+
+class GenreListView(generic.ListView):
+    model = Genre
+    paginate_by = 2
+    context_object_name = 'generos'
+    queryset = Genre.objects.all()
+    template_name = 'generos.html'
